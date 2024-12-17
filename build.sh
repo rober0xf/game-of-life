@@ -15,7 +15,4 @@ for src_file in "$SRC_DIR"/*.c; do
     $CC $CFLAGS -c "$src_file" -o "$obj_file" || exit 1
 done
 
-echo "Generando ejecutable $OUTPUT"
 $CC $CFLAGS -o "$OUTPUT" "$OBJ_DIR"/*.o $LDFLAGS || exit 1
-
-echo "Build completado con éxito: $OUTPUT"
