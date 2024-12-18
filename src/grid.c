@@ -25,7 +25,8 @@ int draw_cell(SDL_Surface *surface, int x, int y, int cell_size, Uint32 color) {
         return -1;
     }
 
-    SDL_Rect rect = {x, y, cell_size, cell_size}; // x, y, w, h
+    // the magic numbers are just to leave a teeny tiny space between each cell
+    SDL_Rect rect = {x * cell_size + 1, y * cell_size + 1, cell_size - 1, cell_size - 1}; // x, y, w, h
 
     if (SDL_FillRect(surface, &rect, color) != 0) {
         SDL_Log("error fill rect failed: %s", SDL_GetError());
