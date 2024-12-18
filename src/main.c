@@ -1,10 +1,6 @@
 #include "../include/game.h"
 #include "../include/grid.h"
-
-#define TITLE "game of life"
-#define WIDTH 900
-#define HEIGHT 600
-int cell_size = 10;
+#include "../include/constants.h"
 
 int main() {
     SDL_Init(SDL_INIT_VIDEO);
@@ -16,18 +12,18 @@ int main() {
         return -1;
     }
 
-    int x_cell = (WIDTH - cell_size) / 2;
-    int y_cell = (HEIGHT - cell_size) / 2;
-    Uint32 red = SDL_MapRGB(surface->format, 255, 0, 0); // we need to define with this format
-
-    int result = draw_cell(surface, x_cell, y_cell, cell_size, red);
-    if (result != 0) {
-        SDL_Log("error drawing the cell: %s\n", SDL_GetError());
+    int *matrix = (int *)malloc(rows * cols * sizeof(int));
+    if (!matrix) {
+        fprintf(stderr, "error allocating memory for the matrix. \n");
+        SDL_DestroyWindow(window);
+        SDL_Quit();
     }
 
-    SDL_UpdateWindowSurface(window); // we need to refresh the surface to see the rect
+    init_matrix(rows, cols, matrix); // matrix is pointing to the first elem
+    draw_matrix(surface, rows, cols, matrix);
 
-    SDL_Delay(5000);
+    SDL_UpdateWindowSurface(window); // we need to refresh the surface to see the rect
+    SDL_Delay(3000);
     SDL_DestroyWindow(window);
     SDL_Quit();
 
