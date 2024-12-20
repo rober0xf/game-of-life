@@ -5,7 +5,7 @@
 #define TITLE "game of life"
 #define WIDTH 900
 #define HEIGHT 600
-#define rows (HEIGHT / CELL_SIZE)
-#define cols (WIDTH / CELL_SIZE)
+#define ROWS (HEIGHT / CELL_SIZE)
+#define COLS (WIDTH / CELL_SIZE)
 
 #endif // !CONSTANTS_H_
